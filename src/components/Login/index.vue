@@ -1,5 +1,5 @@
 <template>
-  <div id="container">
+  <div id="login-container">
     <el-form
       ref="loginForm"
       :model="loginForm"
@@ -17,6 +17,7 @@
         ></el-input>
       </el-form-item>
       <el-form-item label="password" prop="password">
+        <svg-icon icon-class="movies" />
         <el-input
           v-model="loginForm.password"
           type="password"
@@ -34,20 +35,20 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       loginForm: {
-        name: "",
-        password: "",
+        name: '',
+        password: ''
       },
-      loginRules: {},
-    };
-  },
-};
+      loginRules: {}
+    }
+  }
+}
 </script>
 
 <style scoped>
-#container {
+#login-container {
   width: 500px;
   height: 500px;
   margin: 0 auto;
