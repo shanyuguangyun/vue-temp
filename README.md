@@ -103,7 +103,7 @@ npm install -S axios
 
 #### 7.安装node-sass、sass-loader
 ```shell
- npm  install sass-loader --save-dev
+ npm  install sass-loader@7.0.1 --save-dev
  npm install node-sass@4.13.0 --sava-dev
 ```
 >配置webpack解析scss

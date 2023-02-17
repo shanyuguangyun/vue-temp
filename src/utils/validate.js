@@ -4,3 +4,7 @@ export function isvalidUsername(str) {
   }
   return str.trim().length >= 3
 }
+
+export function isAbsolutePath(path) {
+  return /^(https?|tel|mailto)/.test(path)
+}
