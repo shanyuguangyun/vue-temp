@@ -1,22 +1,13 @@
-// base color
-$blue:#324157;
-$light-blue:#3A71A8;
-$red:#C03639;
-$pink: #E65D6E;
-$green: #30B08F;
-$tiffany: #4AB7BD;
-$yellow:#FEC171;
-$panGreen: #30B08F;
+$dark-blue: #3a3f51;
+$bg-gary: #f0f3f4;
+$text-color: #606266;
+$white: #ffffff;
 
-// sidebar
-$menuText:#bfcbd9;
-$menuActiveText:#409EFF;
-$subMenuActiveText:#f4f4f5; // https://github.com/ElemeFE/element/issues/12951
+$sideBarWidth: 200px;
+$px30: 30px;
+$px20: 20px;
 
-$menuBg:#304156;
-$menuHover:#263445;
-
-$subMenuBg:#1f2d3d;
-$subMenuHover:#001528;
-
-$sideBarWidth: 210px;
+%width-height {
+  width: 100%;
+  height: 100%;
+}

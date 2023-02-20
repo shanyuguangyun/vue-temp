@@ -1,33 +1,78 @@
 import {login} from '@/api/login'
+import {Message} from 'element-ui'
 import {setToken} from '@/utils/auth'
+import router, {resetRouter} from '@/router'
 
-const user = {
-  state: {
-    token: '',
-    name: '',
-    id: ''
+const state = {
+  token: localStorage.getItem('token') ? localStorage.getItem('token') : '', // 认证凭证'
+  username: '',
+  roles: [],
+  introduce: '',
+  userid: null
+}
+
+const mutations = {
+  SET_TOKEN: (state, token) => {
+    state.token = token
   },
-  mutations: {
-    SET_TOKEN: (state, token) => {
-      state.token = token
-    }
+  DEL_TOKEN(state) {
+    state.token = ''
+    state.username = ''
+    state.roles = ''
+    state.introduce = ''
+    state.userid = null
+    localStorage.removeItem('token')
   },
-  actions: {
-    Login({commit}, userInfo) {
-      const { username, password } = userInfo
-      return new Promise((resolve, reject) => {
-        login({ username: username.trim(), password: password }).then(response => {
-          console.log("登录返回" + response)
-          const { data } = response
-          commit('SET_TOKEN', data.token)
-          setToken(data.token)
-          resolve()
-        }).catch(error => {
-          reject(error)
-        })
+  SET_ROLES(state, payload) {
+    state.roles = payload
+  },
+  SET_USERNAME(state, payload) {
+    state.username = payload
+  },
+  SET_USERID(state, payload) {
+    state.userid = payload
+  },
+  SET_INTRODUCE(state, payload) {
+    state.introduce = payload
+  }
+}
+const actions = {
+  Login({commit}, userInfo) {
+    const {username,password} = userInfo
+    return new Promise((resolve, reject) => {
+      login({
+        username: username.trim(),
+        password: password
+      }).then(response => {
+        const {data } = response
+        commit('SET_TOKEN', data.token)
+        commit('SET_USERNAME', data.username)
+        commit('SET_USERID', data.id)
+        setToken(data.token)
+        resolve()
+      }).catch(error => {
+        reject(error)
       })
-    }
+    })
+  },
+  LoginOut({commit}) {
+    commit('DEL_TOKEN')
+    resetRouter()
+    router.push({
+      path: '/login',
+      query: {
+        redirect: '/'
+      }
+    })
+  },
+  GetUserInfo({commit}) {
+
   }
 }
 
-export default user
+export default {
+  namespaced: true,
+  state,
+  mutations,
+  actions
+}

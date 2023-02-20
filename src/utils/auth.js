@@ -3,9 +3,9 @@ import Cookies from 'js-cookie'
 const TokenKey = 'loginToken'
 
 export function setToken(token) {
-  return Cookies.set(TokenKey, token)
+  localStorage.setItem('token', token)
 }
 
 export function getToken() {
-  return Cookies.get(TokenKey)
+  return localStorage.getItem('token')
 }

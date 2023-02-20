@@ -1,23 +1,43 @@
 <template>
-  <div class="app-wrapper">
-    <sidebar class="sidebar-container"></sidebar>
-    <div class="main-container">
-      <navbar></navbar>
-      <app-main></app-main>
+  <div class="wrapper" :class="{ closeBar: opened }">
+    <m-header></m-header>
+    <transition
+      enter-active-class="animated bounceInRight"
+      leave-active-class="animated bounceOutRight"
+    >
+      <notificat-bar v-show="msgIsShow"></notificat-bar>
+    </transition>
+    <div class="wrapper_con">
+      <side-bar></side-bar>
+      <page-main></page-main>
     </div>
   </div>
 </template>
 
 <script>
-import Sidebar from "@/views/layout/components/Sidebar";
-import AppMain from "@/views/layout/components/AppMain";
-import Navbar from "@/views/layout/components/Navbar";
+import SideBar from "./components/Sidebar";
+import MHeader from "./components/Header";
+import PageMain from "./components/PageMain";
+import NotificatBar from "@/components/NotificatBar";
+import { mapGetters } from "vuex";
+import driver from "@/mixins/userDriver";
 export default {
   name: "layout",
+  mixins: [driver],
+  mounted() {
+    if (this.showDriver === "yes") {
+      this.guide();
+      this.$store.commit("SET_DRIVER", "no");
+    }
+  },
+  computed: {
+    ...mapGetters(["opened", "msgIsShow", "showDriver"]),
+  },
   components: {
-    Navbar,
-    Sidebar,
-    AppMain,
+    SideBar,
+    MHeader,
+    NotificatBar,
+    PageMain,
   },
 };
 </script>

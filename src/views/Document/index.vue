@@ -1,9 +1,9 @@
 <template>
-  <router-view></router-view>
+    <div>index</div>
 </template>
 
 <script>
 export default {
-  name: 'AppMain'
-};
+    
+}
 </script>

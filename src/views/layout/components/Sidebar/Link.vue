@@ -1,32 +1,33 @@
 <template>
-  <div v-bind="returnToTag(to)">
+  <div v-bind="returnTag(to)">
     <slot />
   </div>
 </template>
+
 <script>
-import { isAbsolutePath } from "@/utils/validate";
+import { isAbsolutePath } from '@/utils/validate'
 export default {
   props: {
     to: {
       type: String,
-      required: true,
-    },
+      required: true
+    }
   },
   methods: {
-    returnToTag(path) {
+    returnTag(path) {
       if (isAbsolutePath(path)) {
         return {
-          is: "a",
-          target: "_blank",
-          href: path,
-        };
+          is: 'a',
+          target: '_blank',
+          href: path
+        }
       } else {
         return {
-          is: "router-link",
-          to: path,
-        };
+          is: 'router-link',
+          to: path
+        }
       }
-    },
-  },
-};
-</script>   
+    }
+  }
+}
+</script>
