@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard">
-    <el-row class="infoCards">
+    <el-row class="infoCards" :gutter="50">
       <el-col :span="8">
         <div class="cardItem">
           <div class="cardItem_txt">
@@ -53,30 +53,43 @@
         </div>
       </el-col>
     </el-row>
-    <linechats
-      class="lineCharts"
-      :lineChartData="lineChartData"
-    ></linechats>
+    <bar-charts :lineChartData="lineChartData"></bar-charts>
+    <line-charts :lineChartData="lineChartData"></line-charts>
+
+    <div class="cardBottomCharts">
+      <pie-charts
+        class="bottomCharts_p0"
+        :lineChartData="lineChartData"
+      ></pie-charts>
+      <top-ten-table class="bottomCharts_p1"></top-ten-table>
+    </div>
   </div>
 </template>
 <script>
-import CountTo from 'vue-count-to'
-import Linechats from './components/LineChats'
+import CountTo from "vue-count-to";
+import BarCharts from "./components/BarCharts";
+import LineCharts from "./components/LineCharts";
+import PieCharts from "./components/PieCharts";
+import TopTenTable from "./components/Table";
 export default {
-  name: 'Home',
-  data () {
+  name: "Home",
+  data() {
     return {
       startVal: 0,
       vistors: 200,
-      lineChartData: {}
-    }
+      lineChartData: {},
+    };
   },
   components: {
     CountTo,
-    Linechats
-  }
-}
+    BarCharts,
+    LineCharts,
+    PieCharts,
+    TopTenTable,
+  },
+};
 </script>
+    LineCharts
 
 <style lang="scss" scoped>
 @mixin shadow {
@@ -91,11 +104,15 @@ export default {
 .color-red {
   color: #f4516c !important;
 }
+.infoCards {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
 .cardItem {
   display: flex;
   flex-direction: row;
   @include shadow();
-  margin-left: 20px;
   height: 100px;
   border-radius: 4px;
   background: #fff;
@@ -125,5 +142,21 @@ export default {
   margin-top: 30px;
   padding: 30px 0;
   @include shadow();
+}
+.cardBottomCharts {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 30px;
+  .bottomCharts_p0 {
+  }
+  .bottomCharts_p1 {
+    background: #fff;
+    @include shadow();
+    margin-left: 50px;
+    margin-top: 30px;
+    height: 350px;
+    padding: 30px 30px;
+  }
 }
 </style>

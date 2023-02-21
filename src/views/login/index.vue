@@ -7,6 +7,7 @@
       autoComplete="on"
       class="login-form"
       label-position="left"
+      @keyup.enter.native="handleLogin"
     >
       <div class="title-container">
         <svg-icon icon-class="movies" class="title-icon" />

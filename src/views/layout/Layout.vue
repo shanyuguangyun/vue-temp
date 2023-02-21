@@ -27,7 +27,7 @@ export default {
   mounted() {
     if (this.showDriver === "yes") {
       this.guide();
-      this.$store.commit("SET_DRIVER", "no");
+      this.$store.commit("app/SET_DRIVER", "no");
     }
   },
   computed: {
