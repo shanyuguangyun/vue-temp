@@ -34,41 +34,41 @@ export const currencyRoutes = [{
       component: () => import('@/views/Dashboard'),
       meta: {
         title: '看板',
-        icon: 'el-icon-s-home'
+        icon: 'el-icon-s-data'
       }
     }]
   },
   {
-    path: '/document',
+    path: '/income',
     component: Layout,
     children: [{
       path: 'index',
       name: 'Index',
-      component: () => import('@/views/Document'),
+      component: () => import('@/views/Income'),
       meta: {
-        title: '文档',
+        title: '收入',
         icon: 'el-icon-folder-opened'
       }
     }]
   },
   {
-    path: '/functions',
+    path: '/outflow',
     component: Layout,
     meta: {
-      title: '功能',
-      icon: 'el-icon-s-platform'
+      title: '支出',
+      icon: 'el-icon-coin'
     },
     children: [{
       path: 'add',
       name: 'Add',
-      component: () => import('@/views/Functions/add'),
+      component: () => import('@/views/Outflow/add'),
       meta: {
         title: '新增'
       }
     }, {
       path: 'update',
       name: 'Update',
-      component: () => import('@/views/Functions/update'),
+      component: () => import('@/views/Outflow/update'),
       meta: {
         title: '更新'
       }
